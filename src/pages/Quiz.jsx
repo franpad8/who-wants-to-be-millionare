@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { nextQuestion, useQuiz } from '../contexts/QuizContext'
+import Question from '../features/quiz/Question'
+import Button from '../ui/Button'
 
 export function Quiz () {
   const { currentQuestionIndex, dispatch } = useQuiz()
@@ -16,8 +18,8 @@ export function Quiz () {
 
   return (
     <div>
-      <span>Question #{currentQuestionIndex + 1}</span>
-      <button onClick={handleClick}>Next Question</button>
+      <Question />
+      <Button onClick={handleClick}>Next Question</Button>
     </div>
   )
 }
