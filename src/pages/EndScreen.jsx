@@ -13,7 +13,7 @@ export function EndScreen () {
   return (
     <div>
       Finish
-      <button onClick={handleClick}>Ok</button>
+      <button onClick={handleClick}>Play again</button>
     </div>
   )
 }

@@ -1,5 +1,7 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useQuiz, start } from '../contexts/QuizContext'
+import EnterPlayerName from '../features/player/EnterPlayerName'
+import Button from '../ui/Button'
 
 export function StartScreen () {
   const { dispatch } = useQuiz()
@@ -12,8 +14,9 @@ export function StartScreen () {
 
   return (
     <div>
-      Start
-      <button onClick={handleClick}>Start Quiz</button>
+      <EnterPlayerName />
+      <Button onClick={handleClick}>Start Quiz</Button>
+      <Link to='/best'>Best Players</Link>
     </div>
   )
 }
