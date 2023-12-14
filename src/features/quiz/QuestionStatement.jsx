@@ -1,12 +1,12 @@
 import { useQuiz } from '../../contexts/QuizContext'
 
 const QuestionStatement = () => {
-  const { currentQuestionIndex } = useQuiz()
+  const { currentQuestion } = useQuiz()
 
   return (
     <div>
       <p>
-        Question #{currentQuestionIndex + 1}
+        {currentQuestion.question}
       </p>
     </div>
   )

@@ -1,16 +1,13 @@
+import { useQuiz } from '../../contexts/QuizContext'
 import Option from './Option'
 
-const optionList = [
-  'Option 1',
-  'Option 2',
-  'Option 3',
-  'Option 4'
-]
-
 const OptionList = () => {
+  const { currentQuestion } = useQuiz()
+  const options = currentQuestion.content
+
   return (
     <>
-      {optionList.map((option, index) => <Option key={index} text={option} />)}
+      {options.map((option, index) => <Option key={index} index={index} text={option} />)}
     </>
   )
 }

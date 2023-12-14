@@ -6,6 +6,19 @@ function start () {
   return { type: 'start' }
 }
 
+function selectOption (optionIndex) {
+  return {
+    type: 'selectOption',
+    payload: optionIndex
+  }
+}
+
+function resolveQuestion (optionIndex) {
+  return {
+    type: 'resolveQuestion'
+  }
+}
+
 function nextQuestion () {
   return { type: 'nextQuestion' }
 }
@@ -17,4 +30,4 @@ function useQuiz () {
   return context
 }
 
-export { QuizContext, useQuiz, start, nextQuestion }
+export { QuizContext, useQuiz, nextQuestion, resolveQuestion, selectOption, start }

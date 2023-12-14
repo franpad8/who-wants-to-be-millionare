@@ -4,11 +4,14 @@ import Question from '../features/quiz/Question'
 import Button from '../ui/Button'
 
 export function Quiz () {
-  const { currentQuestionIndex, dispatch } = useQuiz()
+  const { currentQuestionIndex, status, dispatch, answer, currentQuestion } = useQuiz()
   const navigate = useNavigate()
 
+  const isGameOver = status === 'resolved' &&
+    (currentQuestionIndex === 14 || answer !== currentQuestion.correct)
+
   function handleClick () {
-    if (currentQuestionIndex === 14) {
+    if (isGameOver) {
       navigate('/finish')
       return
     }
@@ -19,7 +22,9 @@ export function Quiz () {
   return (
     <div>
       <Question />
-      <Button onClick={handleClick}>Next Question</Button>
+      <Button onClick={handleClick} hidden={status !== 'resolved'}>
+        {isGameOver ? 'Next' : 'Next Question'}
+      </Button>
     </div>
   )
 }
