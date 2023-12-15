@@ -1,14 +1,16 @@
+import { useLifeline } from '../../contexts/LifelineContext'
 import { useQuiz, resolveQuestion, selectOption } from '../../contexts/QuizContext'
 
 const Option = ({ text, index }) => {
   const { dispatch, status, answer, currentQuestion } = useQuiz()
+  const { status: lifelineStatus, eliminatedOptions } = useLifeline()
 
   function handleClick () {
     dispatch(selectOption(index))
 
     setTimeout(() => {
       dispatch(resolveQuestion())
-    }, 5000)
+    }, 3000)
   }
 
   function styleClass () {
@@ -17,6 +19,9 @@ const Option = ({ text, index }) => {
     }
     if (status === 'resolved' && answer === index && index !== currentQuestion.correct) {
       return 'incorrect'
+    }
+    if (lifelineStatus === 'applied' && eliminatedOptions.includes(index)) {
+      return 'eliminated'
     }
 
     return ''

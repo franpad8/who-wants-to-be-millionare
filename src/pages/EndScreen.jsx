@@ -1,12 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { start, useQuiz } from '../contexts/QuizContext'
+import { resetLifeline, useLifeline } from '../contexts/LifelineContext'
 
 export function EndScreen () {
   const navigate = useNavigate()
-  const { dispatch } = useQuiz()
+  const { dispatch: quizDispatch } = useQuiz()
+  const { dispatch: lifelineDispatch } = useLifeline()
 
   function handleClick () {
-    dispatch(start)
+    quizDispatch(start())
+    lifelineDispatch(resetLifeline())
     navigate('/')
   }
 

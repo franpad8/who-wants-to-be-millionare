@@ -14,3 +14,7 @@
   background: red;
   color: black;
 }
+
+.option.eliminated {
+  color: transparent;
+}
