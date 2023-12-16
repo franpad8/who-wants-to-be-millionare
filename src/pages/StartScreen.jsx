@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useQuiz, start } from '../contexts/QuizContext'
 import EnterPlayerName from '../features/player/EnterPlayerName'
 import Button from '../ui/Button'

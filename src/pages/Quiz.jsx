@@ -33,7 +33,7 @@ export function Quiz () {
         <div>
           <Logo size='lg' />
         </div>
-        <div className='border-[3px] rounded-sm border-blue-600 justify-self-stretch p-2'>
+        <div className='border-[3px] rounded-md border-blue-800 bg-primary justify-self-stretch p-2'>
           <Lifeline />
           <PrizeTable />
         </div>

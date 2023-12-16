@@ -17,7 +17,10 @@ export default {
         transparent: 'transparent',
         primary: '#13106D',
         green: '#51941E',
-        orange: '#E18C1D'
+        orange: {
+          300: '#fdba74',
+          DEFAULT: '#E18C1D'
+        }
       },
       keyframes: {
         blink: {

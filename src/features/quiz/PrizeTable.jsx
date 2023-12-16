@@ -12,7 +12,13 @@ const PrizeTable = () => {
   const { currentQuestionIndex } = useQuiz()
 
   return (
-    <table className='table-auto w-[100%] h-[95%] text-left text-2xl text-orange select-none'>
+    <table className='table-auto
+                      w-[100%] h-[95%]
+                      text-left text-2xl text-transparent
+                      select-none
+                      bg-gradient-to-t from-orange to-orange-300
+                      bg-clip-text'
+    >
       {prizes.map((amount, index) => {
         const className = 'group hover:bg-orange rounded-sm cursor-default transition-all duration-200'
 
