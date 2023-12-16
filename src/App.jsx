@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Header } from './Header'
 import { StartScreen } from './pages/StartScreen'
 import { EndScreen } from './pages/EndScreen'
 import { Quiz } from './pages/Quiz'
@@ -9,10 +8,7 @@ import Best from './pages/Best'
 
 function App () {
   return (
-    <main>
-      <h1>Who wants to be millionare</h1>
-      <Header />
-
+    <main className='w-[70rem]'>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<StartScreen />} />

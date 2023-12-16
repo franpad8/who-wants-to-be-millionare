@@ -4,17 +4,3 @@
   padding: 2rem;
   text-align: center;
 }
-
-.option.correct {
-  background-color: green;
-  color: black;
-}
-
-.option.incorrect {
-  background: red;
-  color: black;
-}
-
-.option.eliminated {
-  color: transparent;
-}

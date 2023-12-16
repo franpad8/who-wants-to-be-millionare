@@ -4,7 +4,8 @@ export default function reducer (state, action) {
       return {
         ...state,
         currentQuestionIndex: 0,
-        status: 'selecting'
+        status: 'selecting',
+        answer: null
       }
 
     case 'selectOption':

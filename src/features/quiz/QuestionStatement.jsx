@@ -1,14 +1,15 @@
 import { useQuiz } from '../../contexts/QuizContext'
+import Box from '../../ui/Box'
 
 const QuestionStatement = () => {
   const { currentQuestion } = useQuiz()
 
   return (
-    <div>
+    <Box>
       <p>
         {currentQuestion.question}
       </p>
-    </div>
+    </Box>
   )
 }
 

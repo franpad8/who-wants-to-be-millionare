@@ -3,7 +3,7 @@ import QuestionStatement from './QuestionStatement'
 
 const Question = () => {
   return (
-    <div className='question'>
+    <div className='flex flex-col gap-3'>
       <QuestionStatement />
       <OptionList />
     </div>
