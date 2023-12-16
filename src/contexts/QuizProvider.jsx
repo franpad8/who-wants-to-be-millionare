@@ -16,10 +16,16 @@ export function QuizProvider ({ children }) {
   const currentQuestion = useMemo(() => questions[currentQuestionIndex],
     [currentQuestionIndex])
 
+  const hasWon = useMemo(() => {
+    return status === 'resolved' &&
+    currentQuestionIndex === 14 && answer === currentQuestion.correct
+  }, [answer, currentQuestionIndex, currentQuestion, status])
+
   const value = {
     answer,
     currentQuestion,
     currentQuestionIndex,
+    hasWon,
     dispatch,
     status
   }

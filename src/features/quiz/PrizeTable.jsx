@@ -13,7 +13,7 @@ const PrizeTable = () => {
 
   return (
     <table className='table-auto
-                      w-[100%] h-[95%]
+                      w-[100%]
                       text-left text-2xl text-transparent
                       select-none
                       bg-gradient-to-t from-orange to-orange-300
