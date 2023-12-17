@@ -67,7 +67,7 @@ export function Quiz () {
             <Logo size='lg' />
           </div>
           <div className='border-[3px] rounded-md border-blue-800
-                      bg-primary
+                        bg-black
                         justify-self-stretch p-2
                         flex flex-col gap-2'
           >

@@ -16,7 +16,7 @@ const PrizeTable = () => {
                       w-[100%]
                       text-left text-2xl text-transparent
                       select-none
-                      bg-gradient-to-t from-orange to-orange-300
+                      bg-gradient-to-t from-orange to-orange-200
                       bg-clip-text'
     >
       {prizes.map((amount, index) => {

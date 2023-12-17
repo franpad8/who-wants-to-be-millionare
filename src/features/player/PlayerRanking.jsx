@@ -15,7 +15,7 @@ const PlayerRanking = () => {
   if (!ranking?.length) return <Box className='text-3xl py-5'>No matches registered</Box>
 
   return (
-    <div className='bg-gradient-to-t from-primary/70 to-blue-900/60 p-5 rounded-md'>
+    <div className='bg-black border-[1px] border-slate-100 p-5 rounded-sm'>
       <div className='flex flex-col gap-3
                     text-3xl text-transparent select-none
                     bg-gradient-to-t from-orange to-orange-300
