@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Conduit ITC W02 Light"', ...defaultTheme.fontFamily.sans],
+        sans: ['"Conduit ITC W02 Bold"', ...defaultTheme.fontFamily.sans],
         serif: ['"Copperplate Gothic"', ...defaultTheme.fontFamily.serif]
       },
       colors: {

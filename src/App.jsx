@@ -8,7 +8,7 @@ import Best from './pages/Best'
 
 function App () {
   return (
-    <main className='w-[70rem]'>
+    <main className='w-[70rem] relative'>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<StartScreen />} />

@@ -8,6 +8,7 @@ import Logo from '../ui/Logo'
 import PrizeTable from '../features/quiz/PrizeTable'
 import { usePlayer } from '../contexts/PlayerContext'
 import { GAME_WON_AUDIO, NEXT_QUESTION_AUDIO, ON_QUESTION_EASY_AUDIO, ON_QUESTION_HARD_AUDIO } from '../constants/audios'
+import Sound from '../features/player/Sound'
 
 export function Quiz () {
   const {
@@ -58,26 +59,29 @@ export function Quiz () {
   }
 
   return (
-    <div className='space-y-10'>
-      <div className='grid grid-cols-[1fr_auto] justify-items-center'>
-        <div>
-          <Logo size='lg' />
-        </div>
-        <div className='border-[3px] rounded-md border-blue-800
+    <>
+      <Sound className='absolute top-0 left-0' />
+      <div className='space-y-10'>
+        <div className='grid grid-cols-[1fr_auto] justify-items-center'>
+          <div>
+            <Logo size='lg' />
+          </div>
+          <div className='border-[3px] rounded-md border-blue-800
                       bg-primary
                         justify-self-stretch p-2
                         flex flex-col gap-2'
-        >
-          <Lifeline />
-          <PrizeTable />
+          >
+            <Lifeline />
+            <PrizeTable />
+          </div>
+        </div>
+        <div>
+          <Question />
+          <Button className='mt-8' onClick={handleClick} disabled={status !== 'resolved'}>
+            {isGameOver ? 'Next' : 'Next Question'}
+          </Button>
         </div>
       </div>
-      <div>
-        <Question />
-        <Button className='mt-8' onClick={handleClick} disabled={status !== 'resolved'}>
-          {isGameOver ? 'Next' : 'Next Question'}
-        </Button>
-      </div>
-    </div>
+    </>
   )
 }

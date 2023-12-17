@@ -5,6 +5,7 @@ import Button from '../ui/Button'
 import Logo from '../ui/Logo'
 import { usePlayer } from '../contexts/PlayerContext'
 import { NEXT_QUESTION_AUDIO, ON_QUESTION_EASY_AUDIO, AUDIO_CONFIG } from '../constants/audios'
+import Sound from '../features/player/Sound'
 
 export function StartScreen () {
   const { dispatch } = useQuiz()
@@ -24,15 +25,18 @@ export function StartScreen () {
   }
 
   return (
-    <div className='flex flex-col gap-10 justify-center items-center'>
-      <div className='self-center'>
-        <Logo />
+    <>
+      <Sound className='absolute top-0 left-0' />
+      <div className='flex flex-col gap-10 justify-center items-center'>
+        <div className='self-center'>
+          <Logo />
+        </div>
+        <EnterPlayerName />
+        <div className='flex flex-col gap-3 w-[100%] sm:w-[50%]'>
+          <Button type='lg' onClick={handleClick} disabled={player.length < 3}>Play</Button>
+          <Button type='lg' to='/best'>Best Players</Button>
+        </div>
       </div>
-      <EnterPlayerName />
-      <div className='flex flex-col gap-3 w-[100%] sm:w-[50%]'>
-        <Button type='lg' onClick={handleClick} disabled={player.length < 3}>Play</Button>
-        <Button type='lg' to='/best'>Best Players</Button>
-      </div>
-    </div>
+    </>
   )
 }
