@@ -1,14 +1,18 @@
+import { AUDIO_CONFIG, SELECTED_LIFELINE_AUDIO } from '../../constants/audios'
 import { useLifeline, selectLifeline, applyLifeline } from '../../contexts/LifelineContext'
+import { usePlayer } from '../../contexts/PlayerContext'
 import { useQuiz } from '../../contexts/QuizContext'
 
 const Lifeline = () => {
   const { canUseLifeline, dispatch } = useLifeline()
   const { currentQuestion } = useQuiz()
+  const { loadAudio } = usePlayer()
 
   function handleClick () {
     dispatch(selectLifeline())
 
     setTimeout(() => {
+      loadAudio(SELECTED_LIFELINE_AUDIO, AUDIO_CONFIG)
       dispatch(applyLifeline(currentQuestion.correct))
     }, 3000)
   }

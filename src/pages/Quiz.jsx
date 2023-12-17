@@ -7,6 +7,7 @@ import { useLifeline, activateLifeline } from '../contexts/LifelineContext'
 import Logo from '../ui/Logo'
 import PrizeTable from '../features/quiz/PrizeTable'
 import { usePlayer } from '../contexts/PlayerContext'
+import { GAME_WON_AUDIO, NEXT_QUESTION_AUDIO, ON_QUESTION_EASY_AUDIO, ON_QUESTION_HARD_AUDIO } from '../constants/audios'
 
 export function Quiz () {
   const {
@@ -18,8 +19,7 @@ export function Quiz () {
     hasWon
   } = useQuiz()
   const { dispatch: lifelineDispatch } = useLifeline()
-  const { player: playerName } = usePlayer()
-
+  const { player: playerName, loadAudio } = usePlayer()
   const navigate = useNavigate()
 
   const isGameOver = status === 'resolved' &&
@@ -37,11 +37,21 @@ export function Quiz () {
 
   function handleClick () {
     if (isGameOver) {
+      if (hasWon) loadAudio(GAME_WON_AUDIO, { format: 'mp3', initialVolume: 0.25, autoplay: true })
       updateRanking()
       navigate('/finish')
       return
     }
 
+    loadAudio(NEXT_QUESTION_AUDIO, {
+      format: 'mp3',
+      initialVolume: 0.25,
+      autoplay: true,
+      onend: function () {
+        const onQuestionAudio = currentQuestionIndex < 4 ? ON_QUESTION_EASY_AUDIO : ON_QUESTION_HARD_AUDIO
+        loadAudio(onQuestionAudio, { format: 'mp3', initialVolume: 0.25, autoplay: true, loop: true })
+      }
+    })
     const incrementLifeline = [4, 8, 12].includes(currentQuestionIndex)
     lifelineDispatch(activateLifeline(incrementLifeline))
     quizDispatch(nextQuestion())

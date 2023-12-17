@@ -1,10 +1,14 @@
 import { useLifeline } from '../../contexts/LifelineContext'
 import { useQuiz, resolveQuestion, selectOption } from '../../contexts/QuizContext'
 import Box from '../../ui/Box'
+import { useEffect } from 'react'
+import { AUDIO_CONFIG, CORRECT_ANSWER_AUDIO, INCORRECT_ANSWER_AUDIO, SELECTED_OPTION_AUDIO } from '../../constants/audios'
+import { usePlayer } from '../../contexts/PlayerContext'
 
 const Option = ({ text, index }) => {
   const { dispatch, status, answer, currentQuestion } = useQuiz()
   const { status: lifelineStatus, eliminatedOptions } = useLifeline()
+  const { loadAudio } = usePlayer()
 
   const isSelected = answer === index
   const isCorrect = status === 'resolved' && index === currentQuestion.correct
@@ -19,12 +23,18 @@ const Option = ({ text, index }) => {
   }
 
   function handleClick () {
+    loadAudio(SELECTED_OPTION_AUDIO, AUDIO_CONFIG)
     dispatch(selectOption(index))
 
     setTimeout(() => {
       dispatch(resolveQuestion())
-    }, 3000)
+    }, 5000)
   }
+
+  useEffect(() => {
+    if (isCorrect && isSelected) loadAudio(CORRECT_ANSWER_AUDIO, AUDIO_CONFIG)
+    if (isIncorrect) loadAudio(INCORRECT_ANSWER_AUDIO, AUDIO_CONFIG)
+  }, [isCorrect, isIncorrect, isSelected, loadAudio])
 
   function styleClass () {
     if (isCorrect) {
@@ -52,7 +62,7 @@ const Option = ({ text, index }) => {
     >
       <div className='flex items-center gap-2'>
         <span className='group-[.correct]:text-orange
-                          group-[.incorrect]:text-slate-100
+                         group-[.incorrect]:text-slate-100
                           group:text-orange
                           group-[.selected]:text-orange
                           group-[.selected:hover]:text-orange
