@@ -2,6 +2,10 @@ import { createContext, useContext } from 'react'
 
 const QuizContext = createContext()
 
+function initialize () {
+  return { type: 'initialize' }
+}
+
 function start () {
   return { type: 'start' }
 }
@@ -23,6 +27,10 @@ function nextQuestion () {
   return { type: 'nextQuestion' }
 }
 
+function finishGame () {
+  return { type: 'finishGame' }
+}
+
 function useQuiz () {
   const context = useContext(QuizContext)
   if (!context) throw new Error('QuizContext was used outside of its Provider')
@@ -30,4 +38,13 @@ function useQuiz () {
   return context
 }
 
-export { QuizContext, useQuiz, nextQuestion, resolveQuestion, selectOption, start }
+export {
+  QuizContext,
+  useQuiz,
+  nextQuestion,
+  resolveQuestion,
+  selectOption,
+  finishGame,
+  start,
+  initialize
+}

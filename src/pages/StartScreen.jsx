@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { useQuiz, start } from '../contexts/QuizContext'
 import EnterPlayerName from '../features/player/EnterPlayerName'
 import Button from '../ui/Button'
@@ -9,7 +8,6 @@ import Sound from '../features/player/Sound'
 
 export function StartScreen () {
   const { dispatch } = useQuiz()
-  const navigate = useNavigate()
   const { player } = usePlayer()
   const { loadAudio } = usePlayer()
 
@@ -21,7 +19,6 @@ export function StartScreen () {
       }
     })
     dispatch(start())
-    navigate('/quiz')
   }
 
   return (

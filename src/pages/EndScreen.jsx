@@ -1,6 +1,5 @@
-import { useNavigate } from 'react-router-dom'
 import Confetti from 'react-confetti'
-import { start, useQuiz } from '../contexts/QuizContext'
+import { initialize, useQuiz } from '../contexts/QuizContext'
 import { resetLifeline, useLifeline } from '../contexts/LifelineContext'
 import Button from '../ui/Button'
 import Box from '../ui/Box'
@@ -17,14 +16,12 @@ function message (questionIndex, hasWon) {
 }
 
 export function EndScreen () {
-  const navigate = useNavigate()
   const { dispatch: quizDispatch, currentQuestionIndex, hasWon } = useQuiz()
   const { dispatch: lifelineDispatch } = useLifeline()
 
   function handleClick () {
-    quizDispatch(start())
     lifelineDispatch(resetLifeline())
-    navigate('/')
+    quizDispatch(initialize())
   }
 
   return (

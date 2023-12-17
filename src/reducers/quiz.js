@@ -1,11 +1,18 @@
 export default function reducer (state, action) {
   switch (action.type) {
+    case 'initialize':
+      return {
+        currentQuestionIndex: null,
+        status: 'initial',
+        answer: null
+      }
+
     case 'start':
       return {
         ...state,
         currentQuestionIndex: 0,
-        status: 'selecting',
-        answer: null
+        answer: null,
+        status: 'selecting'
       }
 
     case 'selectOption':
@@ -28,6 +35,13 @@ export default function reducer (state, action) {
         status: 'selecting',
         answer: null
       }
+
+    case 'finishGame': {
+      return {
+        ...state,
+        status: 'finished'
+      }
+    }
 
     default:
       return state

@@ -1,5 +1,4 @@
-import { useNavigate } from 'react-router-dom'
-import { nextQuestion, useQuiz } from '../contexts/QuizContext'
+import { finishGame, nextQuestion, useQuiz } from '../contexts/QuizContext'
 import Question from '../features/quiz/Question'
 import Button from '../ui/Button'
 import Lifeline from '../features/lifelines/Lifeline'
@@ -21,7 +20,6 @@ export function Quiz () {
   } = useQuiz()
   const { dispatch: lifelineDispatch } = useLifeline()
   const { player: playerName, loadAudio } = usePlayer()
-  const navigate = useNavigate()
 
   const isGameOver = status === 'resolved' &&
     (currentQuestionIndex === 14 || answer !== currentQuestion.correct)
@@ -40,7 +38,7 @@ export function Quiz () {
     if (isGameOver) {
       if (hasWon) loadAudio(GAME_WON_AUDIO, { format: 'mp3', initialVolume: 0.25, autoplay: true })
       updateRanking()
-      navigate('/finish')
+      quizDispatch(finishGame())
       return
     }
 
