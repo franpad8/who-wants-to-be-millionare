@@ -6,18 +6,38 @@ import Lifeline from '../features/lifelines/Lifeline'
 import { useLifeline, activateLifeline } from '../contexts/LifelineContext'
 import Logo from '../ui/Logo'
 import PrizeTable from '../features/quiz/PrizeTable'
+import { usePlayer } from '../contexts/PlayerContext'
 
 export function Quiz () {
-  const { currentQuestionIndex, status, dispatch: quizDispatch, answer, currentQuestion } = useQuiz()
+  const {
+    currentQuestionIndex,
+    status,
+    dispatch: quizDispatch,
+    answer,
+    currentQuestion,
+    hasWon
+  } = useQuiz()
   const { dispatch: lifelineDispatch } = useLifeline()
+  const { player: playerName } = usePlayer()
 
   const navigate = useNavigate()
 
   const isGameOver = status === 'resolved' &&
     (currentQuestionIndex === 14 || answer !== currentQuestion.correct)
 
+  function updateRanking () {
+    const ranking = JSON.parse(localStorage.getItem('ranking') || '[]')
+    const newRanking = [
+      ...ranking,
+      { name: playerName, stage: hasWon ? 15 : currentQuestionIndex }
+    ]
+    newRanking.sort((a, b) => b.stage - a.stage)
+    localStorage.setItem('ranking', JSON.stringify(newRanking.slice(0, 10)))
+  }
+
   function handleClick () {
     if (isGameOver) {
+      updateRanking()
       navigate('/finish')
       return
     }
