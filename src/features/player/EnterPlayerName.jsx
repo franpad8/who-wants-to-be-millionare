@@ -14,7 +14,7 @@ const EnterPlayerName = () => {
       <label className='text-xl' htmlFor='enterPlayerName'>Enter Name:</label>
       <input
         ref={inputRef}
-        className='w-[20rem] text-slate-100 font-semibold p-2 text-center
+        className='lg:w-[20rem] text-slate-100 font-semibold p-2 text-center
                  bg-black rounded-full focus:outline-none ring-[1px]
                  ring-slate-100 focus:ring-offset-1 transition-all duration-200
                    hover:ring-offset-1 font-sans text-lg tracking-wider'

@@ -6,7 +6,7 @@ const QuestionStatement = () => {
 
   return (
     <Box>
-      <p>
+      <p className='text-center'>
         {currentQuestion.question}
       </p>
     </Box>

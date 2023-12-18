@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
 import { StartScreen } from './pages/StartScreen'
 import { EndScreen } from './pages/EndScreen'
 import { Quiz } from './pages/Quiz'
@@ -22,7 +21,7 @@ function App () {
   }
 
   return (
-    <main className='w-[70rem] relative'>
+    <main className='w-screen px-10 lg:w-[64rem] relative'>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={appComponentToRender()} />

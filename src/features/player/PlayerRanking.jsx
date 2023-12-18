@@ -12,12 +12,12 @@ function formatStage (stage) {
 const PlayerRanking = () => {
   const ranking = JSON.parse(localStorage.getItem('ranking') || '[]')
 
-  if (!ranking?.length) return <Box className='text-3xl py-5'>No matches registered</Box>
+  if (!ranking?.length) return <Box className='text-xl md:text-2xl lg:text-3xl py-5'>No matches registered</Box>
 
   return (
     <div className='bg-black border-[1px] border-slate-100 p-5 rounded-sm'>
       <div className='flex flex-col gap-3
-                    text-3xl text-transparent select-none
+                    text-xl md:text-2xl lg:text-3xl text-transparent select-none
                     bg-gradient-to-t from-orange to-orange-300
                     bg-clip-text'
       >

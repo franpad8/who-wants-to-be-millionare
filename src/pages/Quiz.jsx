@@ -63,22 +63,23 @@ export function Quiz () {
     <>
       <Sound className='absolute top-0 left-0' />
       <div className='space-y-10'>
-        <div className='grid grid-cols-[1fr_auto] justify-items-center'>
-          <div>
-            <Logo size='lg' />
-          </div>
+        <div className='grid grid-cols-[1fr_auto] justify-items-center items-center md:gap-4'>
+
+          <Logo size='lg' />
+
           <div className='border-[3px] rounded-md border-blue-800
                         bg-black
                         justify-self-stretch p-2
-                        flex flex-col gap-2'
+                        md:flex md:flex-col gap-2 hidden'
           >
-            <Lifeline />
+            <Lifeline className='self-center' />
             <PrizeTable />
           </div>
         </div>
-        <div>
+        <div className='flex flex-col justify-center gap-8'>
+          <Lifeline className='self-end md:hidden' />
           <Question />
-          <Button className='mt-8' onClick={handleClick} disabled={status !== 'resolved'}>
+          <Button className='self-center' onClick={handleClick} disabled={status !== 'resolved'}>
             {isGameOver ? 'Next' : 'Next Question'}
           </Button>
         </div>
