@@ -19,25 +19,27 @@ const PrizeTable = () => {
                       bg-gradient-to-t from-orange to-orange-200
                       bg-clip-text'
     >
-      {prizes.map((amount, index) => {
-        const className = 'group hover:bg-orange rounded-sm cursor-default transition-all duration-200'
+      <tbody>
+        {prizes.map((amount, index) => {
+          const className = 'group hover:bg-orange rounded-sm cursor-default transition-all duration-200'
 
-        if (currentQuestionIndex === 14 - index) {
+          if (currentQuestionIndex === 14 - index) {
+            return (
+              <tr key={15 - index} className={className + ' bg-orange'}>
+                <td className='text-slate-100 pr-5 text-right'>{15 - index}</td>
+                <td className='text-black'>${amount}</td>
+              </tr>
+            )
+          }
           return (
-            <tr key={15 - index} className={className + ' bg-orange'}>
-              <td className='text-slate-100 pr-5 text-right'>{15 - index}</td>
-              <td className='text-black'>${amount}</td>
+            <tr key={15 - index} className={className}>
+              <td className='group-hover:text-slate-100 pr-5 text-right transition-all duration-200'>{15 - index}</td>
+              <td className='group-hover:text-black transition-all duration-200'>${amount}</td>
             </tr>
           )
         }
-        return (
-          <tr key={15 - index} className={className}>
-            <td className='group-hover:text-slate-100 pr-5 text-right transition-all duration-200'>{15 - index}</td>
-            <td className='group-hover:text-black transition-all duration-200'>${amount}</td>
-          </tr>
-        )
-      }
-      )}
+        )}
+      </tbody>
     </table>
   )
 }
