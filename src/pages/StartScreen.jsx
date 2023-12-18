@@ -5,20 +5,23 @@ import Logo from '../ui/Logo'
 import { usePlayer } from '../contexts/PlayerContext'
 import { NEXT_QUESTION_AUDIO, ON_QUESTION_EASY_AUDIO, AUDIO_CONFIG } from '../constants/audios'
 import Sound from '../features/player/Sound'
+import { getQuestions } from '../services/questionsApi'
 
 export function StartScreen () {
   const { dispatch } = useQuiz()
   const { player } = usePlayer()
   const { loadAudio } = usePlayer()
 
-  function handleClick () {
+  async function handleClick () {
     loadAudio(NEXT_QUESTION_AUDIO, {
       ...AUDIO_CONFIG,
       onend: () => {
         loadAudio(ON_QUESTION_EASY_AUDIO, { ...AUDIO_CONFIG, loop: true })
       }
     })
-    dispatch(start())
+
+    const questions = await getQuestions()
+    dispatch(start(questions))
   }
 
   return (

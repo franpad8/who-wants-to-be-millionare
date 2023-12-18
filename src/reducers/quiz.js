@@ -2,9 +2,11 @@ export default function reducer (state, action) {
   switch (action.type) {
     case 'initialize':
       return {
+        ...state,
         currentQuestionIndex: null,
         status: 'initial',
-        answer: null
+        answer: null,
+        questions: []
       }
 
     case 'start':
@@ -12,7 +14,8 @@ export default function reducer (state, action) {
         ...state,
         currentQuestionIndex: 0,
         answer: null,
-        status: 'selecting'
+        status: 'selecting',
+        questions: action.payload
       }
 
     case 'selectOption':
@@ -36,12 +39,11 @@ export default function reducer (state, action) {
         answer: null
       }
 
-    case 'finishGame': {
+    case 'finishGame':
       return {
         ...state,
         status: 'finished'
       }
-    }
 
     default:
       return state

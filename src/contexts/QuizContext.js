@@ -6,8 +6,11 @@ function initialize () {
   return { type: 'initialize' }
 }
 
-function start () {
-  return { type: 'start' }
+function start (questions) {
+  return {
+    type: 'start',
+    payload: questions
+  }
 }
 
 function selectOption (optionIndex) {
