@@ -4,6 +4,10 @@ This is a Web game based on the famous TV game show that features a quiz competi
 
 ![In-Game picture](image-2.png)
 
+## Live Demo
+
+<https://who-wants-to-be-millionare.vercel.app/>
+
 ## Tech Stack
 
 Built with React + Vite.
