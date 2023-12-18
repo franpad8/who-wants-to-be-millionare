@@ -3,9 +3,11 @@ import EnterPlayerName from '../features/player/EnterPlayerName'
 import Button from '../ui/Button'
 import Logo from '../ui/Logo'
 import { usePlayer } from '../contexts/PlayerContext'
-import { NEXT_QUESTION_AUDIO, ON_QUESTION_EASY_AUDIO, AUDIO_CONFIG } from '../constants/audios'
+import { AUDIO_CONFIG } from '../constants/audios'
 import Sound from '../features/player/Sound'
 import { getQuestions } from '../services/questionsApi'
+import nextAudio from '../assets/sounds/next.mp3'
+import selectingAudio from '../assets/sounds/selecting-easy.mp3'
 
 export function StartScreen () {
   const { dispatch } = useQuiz()
@@ -13,10 +15,10 @@ export function StartScreen () {
   const { loadAudio } = usePlayer()
 
   async function handleClick () {
-    loadAudio(NEXT_QUESTION_AUDIO, {
+    loadAudio(nextAudio, {
       ...AUDIO_CONFIG,
       onend: () => {
-        loadAudio(ON_QUESTION_EASY_AUDIO, { ...AUDIO_CONFIG, loop: true })
+        loadAudio(selectingAudio, { ...AUDIO_CONFIG, loop: true })
       }
     })
 

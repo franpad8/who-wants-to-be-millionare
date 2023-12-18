@@ -2,8 +2,11 @@ import { useLifeline } from '../../contexts/LifelineContext'
 import { useQuiz, resolveQuestion, selectOption } from '../../contexts/QuizContext'
 import Box from '../../ui/Box'
 import { useEffect } from 'react'
-import { AUDIO_CONFIG, CORRECT_ANSWER_AUDIO, INCORRECT_ANSWER_AUDIO, SELECTED_OPTION_AUDIO } from '../../constants/audios'
+import { AUDIO_CONFIG } from '../../constants/audios'
 import { usePlayer } from '../../contexts/PlayerContext'
+import answerAudio from '../../assets/sounds/answer.mp3'
+import correctAudio from '../../assets/sounds/correct.mp3'
+import incorrectAudio from '../../assets/sounds/incorrect.mp3'
 
 const Option = ({ text, index }) => {
   const { dispatch, status, answer, currentQuestion } = useQuiz()
@@ -23,7 +26,7 @@ const Option = ({ text, index }) => {
   }
 
   function handleClick () {
-    loadAudio(SELECTED_OPTION_AUDIO, AUDIO_CONFIG)
+    loadAudio(answerAudio, AUDIO_CONFIG)
     dispatch(selectOption(index))
 
     setTimeout(() => {
@@ -32,8 +35,8 @@ const Option = ({ text, index }) => {
   }
 
   useEffect(() => {
-    if (isCorrect && isSelected) loadAudio(CORRECT_ANSWER_AUDIO, AUDIO_CONFIG)
-    if (isIncorrect) loadAudio(INCORRECT_ANSWER_AUDIO, AUDIO_CONFIG)
+    if (isCorrect && isSelected) loadAudio(correctAudio, AUDIO_CONFIG)
+    if (isIncorrect) loadAudio(incorrectAudio, AUDIO_CONFIG)
   }, [isCorrect, isIncorrect, isSelected, loadAudio])
 
   function styleClass () {

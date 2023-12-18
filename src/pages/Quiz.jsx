@@ -6,8 +6,11 @@ import { useLifeline, activateLifeline } from '../contexts/LifelineContext'
 import Logo from '../ui/Logo'
 import PrizeTable from '../features/quiz/PrizeTable'
 import { usePlayer } from '../contexts/PlayerContext'
-import { GAME_WON_AUDIO, NEXT_QUESTION_AUDIO, ON_QUESTION_EASY_AUDIO, ON_QUESTION_HARD_AUDIO } from '../constants/audios'
 import Sound from '../features/player/Sound'
+import nextAudio from '../assets/sounds/next.mp3'
+import wonAudio from '../assets/sounds/won.mp3'
+import selectingEasyAudio from '../assets/sounds/selecting-easy.mp3'
+import selectingHardAudio from '../assets/sounds/selecting-hard.mp3'
 
 export function Quiz () {
   const {
@@ -36,18 +39,18 @@ export function Quiz () {
 
   function handleClick () {
     if (isGameOver) {
-      if (hasWon) loadAudio(GAME_WON_AUDIO, { format: 'mp3', initialVolume: 0.25, autoplay: true })
+      if (hasWon) loadAudio(wonAudio, { format: 'mp3', initialVolume: 0.25, autoplay: true })
       updateRanking()
       quizDispatch(finishGame())
       return
     }
 
-    loadAudio(NEXT_QUESTION_AUDIO, {
+    loadAudio(nextAudio, {
       format: 'mp3',
       initialVolume: 0.25,
       autoplay: true,
       onend: function () {
-        const onQuestionAudio = currentQuestionIndex < 4 ? ON_QUESTION_EASY_AUDIO : ON_QUESTION_HARD_AUDIO
+        const onQuestionAudio = currentQuestionIndex < 4 ? selectingEasyAudio : selectingHardAudio
         loadAudio(onQuestionAudio, { format: 'mp3', initialVolume: 0.25, autoplay: true, loop: true })
       }
     })
